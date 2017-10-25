@@ -1,0 +1,12 @@
+{
+  "name": "standup",
+  "version": "1.0.0",
+  "description": "Virtual Scrums Stand Up",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marc Vitalis",
+  "license": "MIT"
+}
