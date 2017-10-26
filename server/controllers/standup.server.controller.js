@@ -32,3 +32,45 @@ exports.getById = function(req, res) {
     });
 
 }
+
+//GET /standup
+exports.getAll = function(req, res) {
+
+    StandUp.find(function(err, data) {
+        if(err) return console.error(err);
+
+        res.status(200).json(data);
+    });
+}
+
+//PUT /standup/:id
+exports.update = function(req, res) {
+    
+    var id = req.params.id;
+    var standup = req.body;
+
+    StandUp.findById(id, function(err, entry) {
+        if(err) return console.error(err);
+
+        entry.yesterday = standup.yesterday;
+        entry.today = standup.today;
+        entry.impediment = standup.impediment;
+
+        entry.save(function(err, data) {
+            if(err) return console.error(err);
+
+            res.status(204).send();
+        });
+    });
+
+}
+
+//DELETE /standup/:id
+exports.delete = function(req, res) {
+    var id = req.params.id;
+    StandUp.findByIdAndRemove(id, function(err, data) {
+        if(err) return console.error(err);
+
+        res.status(204).send();
+    });
+}
