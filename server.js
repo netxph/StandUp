@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
 function Server(port, router) {
 
@@ -10,6 +11,8 @@ function Server(port, router) {
 		
 		var app = express();
 
+        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(bodyParser.json());
         app.use(express.static('./public'));
 		app.use('/api', this.router);
 		

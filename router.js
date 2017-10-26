@@ -6,5 +6,6 @@ var router = express.Router();
 //routes
 
 router.post('/standup', ctrl.create);
+router.get('/standup/:id', ctrl.getById);
 
 module.exports = router;
