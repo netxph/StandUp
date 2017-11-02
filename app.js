@@ -3,7 +3,12 @@ var router = require('./router.js');
 var mongoose = require('mongoose');
 
 //database
-mongoose.connect('mongodb://localhost/standup', { useMongoClient: true });
+var options = {
+    keepAlive: 1, 
+    useMongoClient: true 
+};
+
+mongoose.connect('mongodb://localhost/standup', options);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -21,12 +21,13 @@ exports.create = function(req, res) {
 }
 
 //GET /standup/:id
-exports.getById = function(req, res) {
+exports.getById = function(req, res, next) {
+    return next({ statusCode: 404, message: "not found" });
 
     var id = req.params.id;
 
     StandUp.findById(id, function(err, data) {
-        if(err) return console.error(err);
+        if(err) return next(err);
 
         res.status(200).json(data);
     });
