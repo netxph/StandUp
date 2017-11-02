@@ -1,0 +1,4 @@
+{
+    "db": "mongodb://localhost/standup",
+    "port": 3000
+}
