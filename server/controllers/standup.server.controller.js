@@ -23,6 +23,7 @@ exports.create = function(req, res) {
 
 //GET /standup/:id
 exports.getById = function(req, res, next) {
+    return next(new Error('Oops this is an intentional error'));
 
     var id = req.params.id;
 
@@ -39,7 +40,6 @@ exports.getById = function(req, res, next) {
             }
         });
     }
-
 }
 
 //GET /standup

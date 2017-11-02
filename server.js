@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var logger = require('./logger.js');
 
 function Server(port, router) {
 
@@ -23,7 +24,7 @@ function Server(port, router) {
 		
 
 		app.listen(port, function() {
-			console.log('Server started at port ' + port + '.');
+			logger.info('Server started at port ' + port + '.');
 		});
 	};
 }

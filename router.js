@@ -1,4 +1,5 @@
 var express = require('express');
+var logger = require('./logger.js');
 var ctrl = require('./server/controllers/standup.server.controller.js');
 
 var router = express.Router();
@@ -13,7 +14,7 @@ router.patch('/standup/:id', ctrl.update);
 router.delete('/standup/:id', ctrl.delete);
 
 router.use(function(err, req, res, next) {
-    console.error(err);
+    logger.error(err);
     next(err);
 });
 
