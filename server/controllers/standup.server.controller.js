@@ -1,4 +1,5 @@
 var StandUp = require('../models/standup.server.model.js');
+var mongoose = require('mongoose');
 
 //POST /standup
 exports.create = function(req, res) {
@@ -22,15 +23,22 @@ exports.create = function(req, res) {
 
 //GET /standup/:id
 exports.getById = function(req, res, next) {
-    return next({ statusCode: 404, message: "not found" });
 
     var id = req.params.id;
 
-    StandUp.findById(id, function(err, data) {
-        if(err) return next(err);
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).send();
+    } else {
+        StandUp.findById(id, function(err, data) {
+            if(err) return next(err);
 
-        res.status(200).json(data);
-    });
+            if(data) {
+                res.status(200).json(data);
+            } else {
+                res.status(404).send();
+            }
+        });
+    }
 
 }
 
